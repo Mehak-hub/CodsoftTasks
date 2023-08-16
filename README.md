@@ -1,3 +1,1 @@
-# Passwordgenerator
-
 CODSOFT
