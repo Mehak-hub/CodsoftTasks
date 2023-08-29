@@ -1,0 +1,64 @@
+# 4
+import random
+
+def winner(user_choice, computer_choice):
+    if user_choice == computer_choice:
+        return "tie"
+    elif user_choice == "rock":
+        return "user" if computer_choice == "scissors" else "computer"
+    elif user_choice == "paper":
+        return "user" if computer_choice == "rock" else "computer"
+    elif user_choice == "scissors":
+        return "user" if computer_choice == "paper" else "computer"
+
+def main():
+    print("Welcome to Rock-Paper-Scissors Game!")
+    print("Enjoy the game")
+    rounds_to_play = int(input("How many rounds would you like to play? "))
+    
+    user_score = 0
+    computer_score = 0
+    
+    for round_num in range(1, rounds_to_play + 1):
+        print(f"\nRound {round_num}/{rounds_to_play}")
+        print("Choose your move: rock, paper, or scissors")
+        user_choice = input().lower()
+        
+        if user_choice not in ["rock", "paper", "scissors"]:
+            print("Invalid choice. Please choose rock, paper, or scissors.")
+            continue
+        
+        computer_choice = random.choice(["rock", "paper", "scissors"])
+        
+        print(f"You chose: {user_choice}")
+        print(f"Computer chose: {computer_choice}")
+        
+        result = winner(user_choice, computer_choice)
+        
+        if result == "tie":
+            print("It's a tie!")
+        else:
+            print(f"{result.capitalize()} wins this round!")
+            if result == "user":
+                user_score += 1
+            else:
+                computer_score += 1
+        
+        print(f"User score: {user_score}  Computer score: {computer_score}")
+    
+    print("\nGame Over!")
+    if user_score > computer_score:
+        print("You win the game!")
+    elif user_score < computer_score:
+        print("Computer wins the game!")
+    else:
+        print("It's a tie series!")
+    
+    play_again = input("Prefer to play another match? (yes/no) ").lower()
+    if play_again == "yes":
+        main()
+    else:
+        print("Thank you for playing!")
+
+if __name__ == "__main__":
+    main()
